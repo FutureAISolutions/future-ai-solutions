@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future AI Solutions | Founder: Akshita Saini</title>
+    <style>
+        :root { --accent: #38bdf8; --bg: #0f172a; --card: rgba(30, 41, 59, 0.7); }
+        body { background: radial-gradient(circle at center, #1e293b, #0f172a); color: white; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        
+        /* Hero Section */
+        .hero { height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; }
+        .badge { background: var(--accent); color: #0f172a; padding: 5px 15px; border-radius: 20px; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 15px; }
+        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.3)); }
+        .tagline { font-size: 1.2rem; color: #94a3b8; max-width: 600px; line-height: 1.6; }
+
+        /* Services Grid */
+        .container { max-width: 1100px; margin: -50px auto 100px; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--card); border: 1px solid rgba(56, 189, 248, 0.2); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px); transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 40px rgba(56, 189, 248, 0.1); }
+        .card h3 { color: var(--accent); margin-top: 0; }
+        
+        /* Buttons */
+        .btn { display: inline-block; margin-top: 30px; padding: 12px 35px; border: 2px solid var(--accent); color: var(--accent); text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: var(--accent); color: #0f172a; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+
+        /* Chatbot UI */
+        #ai-chat-box { position: fixed; bottom: 20px; right: 20px; width: 320px; background: #1e293b; border: 1px solid var(--accent); border-radius: 20px; padding: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 100; }
+        #chat-display { height: 180px; overflow-y: auto; background: #0f172a; padding: 12px; border-radius: 12px; font-size: 0.85rem; margin-bottom: 12px; scroll-behavior: smooth; }
+        .input-group { display: flex; gap: 8px; }
+        input { flex: 1; background: #0f172a; border: 1px solid #334155; color: white; padding: 10px; border-radius: 8px; outline: none; }
+        button#send-btn { background: var(--accent); border: none; width: 40px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+        /* Lead Form Styling */
+.lead-form {
+    background: #0f172a;
+    border: 1px solid var(--accent);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: none; /* Shuruat mein hidden rahega */
+}
+.lead-form input {
+    display: block;
+    width: 90%;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.lead-btn {
+    background: var(--accent);
+    color: #0f172a;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+    </style>
+
+</head>
+<body>
+
+    <section class="hero">
+        <span class="badge">Building the Future</span>
+        <h1>FUTURE AI SOLUTIONS</h1>
+        <p class="tagline">रिजेक्शन ने मुझे "बिल्डर" बना दिया। <br> अब मैं खुद का साम्राज्य खड़ा कर रही हूँ।</p>
+        <a href="#services" class="btn">Explore My Solutions</a>
+    </section>
+
+    <div class="container" id="services">
+        <div class="card">
+            <h3>Custom AI Tools</h3>
+            <p>Businesses ke liye tailored AI automation scripts jo manual kaam ko 10x fast kar de.</p>
+        </div>
+        <div class="card">
+            <h3>Algorithmic Logic</h3>
+            <p>Smart trading bots aur financial data analytics tools jo precision par kaam karte hain.</p>
+        </div>
+        <div class="card">
+            <h3>Web Ecosystems</h3>
+            <p>Modern Node.js architecture par bane scalable servers aur interactive interfaces.</p>
+        </div>
+    </div>
+
+    <div id="ai-chat-box">
+        <h4 style="margin: 0 0 10px 10px; color: var(--accent); font-size: 14px;">Founder's Assistant v1.0</h4>
+        <div id="chat-display">
+            <span style="color: #94a3b8;">नमस्ते! मैं Akshita की Agency का AI हूँ। हम आज क्या बिल्ड करेंगे?</span>
+        </div>
+        <div class="input-group">
+            <input type="text" id="user-input" placeholder="Type a command...">
+            <button id="send-btn" onclick="askAI()">></button>
+        </div>
+    </div>
+    <div id="lead-form-container" class="lead-form">
+    <p style="font-size: 11px; margin-top: 0; color: var(--accent);">Get a Quote for Your AI Project</p>
+    <input type="text" id="lead-name" placeholder="Aapka Naam">
+    <input type="email" id="lead-email" placeholder="Email Address">
+    <textarea id="lead-msg" placeholder="Project Idea?" style="width: 90%; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 8px; padding: 10px; font-size: 12px; margin-bottom: 10px;"></textarea>
+    <button class="lead-btn" onclick="submitLead()">Send Inquiry</button>
+</div>
+
+    <script>
+       const myProjects = [
+    { name: "Trading Bot", tech: "Node.js", desc: "Live price alerts and paper trading logic." },
+    { name: "Admin Dashboard", tech: "Full Stack", desc: "Custom server with file system management." }
+];
+
+function askAI() {
+    let input = document.getElementById('user-input');
+    let display = document.getElementById('chat-display');
+    let val = input.value.toLowerCase();
+
+    if(val.trim() !== "") {
+        display.innerHTML += `<p style="color: var(--accent);"><b>You:</b> ${val}</p>`;
+        let response = "";
+
+        // Smart Responses for Business
+        if(val.includes("project") || val.includes("work")) {
+            response = "Main Akshita ke banaye projects dikha sakta hoon: <br>" + 
+                       myProjects.map(p => `- <b>${p.name}</b> (${p.tech}): ${p.desc}`).join("<br>");
+        } 
+        else if(val.includes("contact") || val.includes("hire")) {
+            response = "Zaroor! Aap apna Email ya Idea likh dein, Akshita aapse jald connect karengi.";
+        }
+        else if(val.includes("rejection")) {
+            response = "Rejections are just data points. Hum ab 'Future AI' build kar rahe hain.";
+        }
+        else {
+            response = "Interesting! Kya aap humare AI Automation services ke baare mein jaanna chahte hain?";
+        }
+
+        setTimeout(() => {
+            display.innerHTML += `<p style="color: #cbd5e1;"><b>AI:</b> ${response}</p>`;
+            display.scrollTop = display.scrollHeight;
+        }, 600);
+        
+        input.value = "";
+    }
+}
+function askAI() {
+    let input = document.getElementById('user-input');
+    let display = document.getElementById('chat-display');
+    let form = document.getElementById('lead-form-container');
+    let val = input.value.toLowerCase();
+
+    if(val.trim() !== "") {
+        display.innerHTML += `<p style="color: var(--accent); margin: 8px 0;"><b>You:</b> ${val}</p>`;
+        let response = "Interesting! Hum is par kaam kar sakte hain.";
+
+        // Logic to trigger Lead Form
+        if(val.includes("hire") || val.includes("business") || val.includes("contact") || val.includes("project")) {
+            response = "Main samajh gaya! Akshita ke saath kaam karne ke liye niche wala form bhar dein.";
+            setTimeout(() => { form.style.display = "block"; }, 1000);
+        } else if(val.includes("work") || val.includes("portfolio")) {
+            response = "Humne Trading Bots aur AI Servers build kiye hain. Kya aap detail dekhna chahte hain?";
+        }
+
+        setTimeout(() => {
+            display.innerHTML += `<p style="color: #cbd5e1; margin: 8px 0;"><b>AI:</b> ${response}</p>`;
+            display.scrollTop = display.scrollHeight;
+        }, 600);
+        
+        input.value = "";
+    }
+}
+
+function submitLead() {
+    let name = document.getElementById('lead-name').value;
+    let email = document.getElementById('lead-email').value;
+    
+    if(name && email) {
+        alert(`Shukriya ${name}! Aapki inquiry register ho gayi hai. Future AI Solutions aapse jald contact karega.`);
+        document.getElementById('lead-form-container').style.display = "none";
+        console.log("New Lead:", {name, email, message: document.getElementById('lead-msg').value});
+    } else {
+        alert("Please fill name and email.");
+    }
+}
+    </script>
+
+</body>
+</html>
