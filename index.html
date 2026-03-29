@@ -86,7 +86,7 @@
     <div id="ai-chat-box">
         <h4 style="margin: 0 0 10px 10px; color: var(--accent); font-size: 14px;">Founder's Assistant v1.0</h4>
         <div id="chat-display">
-            <span style="color: #94a3b8;">नमस्ते! मैं Akshita की Agency का AI हूँ। हम आज क्या बिल्ड करेंगे?</span>
+            <span style="color: #94a3b8;">Welcome! I’m here to assist you with Akshita’s portfolio and services. What are you looking for?</span>
         </div>
         <div class="input-group">
             <input type="text" id="user-input" placeholder="Type a command...">
@@ -123,12 +123,12 @@ function askAI() {
 
         // Smart Responses for Business
         if(val.includes("project") || val.includes("work")) {
-            response = "Main Akshita ke banaye projects dikha sakta hoon: <br>" + 
+            response = "I can certainly showcase the innovative projects developed by Akshita. Would you like to see her Web Development work or her Trading Automation bots?: <br>" + 
                        myProjects.map(p => `- <b>${p.name}</b> (${p.tech}): ${p.desc}`).join("<br>");
         } // Purani line: response = "Wait for contact..."
 // Nayi line (Smart response):
 else if (val.includes("contact") || val.includes("hire")) {
-    response = "Zaroor! Niche apna message likh dein, main (Akshita) aapase jald connect karungi. ✨";
+    response = "Please enter your query or requirements below, and I will be happy to assist you. ✨";
     
     // Ye line aapke form ko dikhayegi (Make sure aapka form section id='contact-form' ho)
     document.getElementById('contact-form').style.visibility = 'visible'; 
@@ -139,10 +139,10 @@ else if (val.includes("contact") || val.includes("hire")) {
     document.getElementById('lead-form-container').style.display = 'block'; 
 }
         else if(val.includes("rejection")) {
-            response = "Rejections are just data points. Hum ab 'Future AI' build kar rahe hain.";
+            response = "I believe rejections are just data points for optimization. They provide the necessary feedback to refine my logic and improve my performance.";
         }
         else {
-            response = "Interesting! Kya aap humare AI Automation services ke baare mein jaanna chahte hain?";
+            response = "Intriguing, isn't it? Would you like to explore how I build AI Automation and smart systems to streamline complex tasks??";
         }
 
         setTimeout(() => {
@@ -169,7 +169,7 @@ setTimeout(() => { form.style.display = "block"; }, 1000);    let message = docu
         })
         .then(res => {
             if (res.status == 200) {
-                alert("Message mil gaya! Akshita aapko jald mail karengi. ✨");
+                alert("Thank you for reaching out! Your message has been received, and Akshita will get in touch with you via email shortly.. ✨");
                 document.getElementById('lead-form-container').style.display = 'none'; // Form gayab ho jayega
             }
         });
@@ -189,7 +189,7 @@ function askAI() {
 
     if(val.trim() !== "") {
         display.innerHTML += `<p style="color: var(--accent); margin: 8px 0;"><b>You:</b> ${val}</p>`;
-        let response = "Interesting! Hum is par kaam kar sakte hain.";
+        let response = "That sounds like a great opportunity! I’m excited about the possibility of collaborating on this project. Let’s discuss how we can bring this idea to life.";
 
         // Logic to trigger Lead Form
         if(val.includes("hire") || val.includes("business") || val.includes("contact") || val.includes("project")) {
