@@ -93,13 +93,18 @@
             <button id="send-btn" onclick="askAI()">></button>
         </div>
     </div>
-    <div id="lead-form-container" class="lead-form">
-    <p style="font-size: 11px; margin-top: 0; color: var(--accent);">Get a Quote for Your AI Project</p>
-    <input type="text" id="lead-name" placeholder="Aapka Naam">
-    <input type="email" id="lead-email" placeholder="Email Address">
-    <textarea id="lead-msg" placeholder="Project Idea?" style="width: 90%; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 8px; padding: 10px; font-size: 12px; margin-bottom: 10px;"></textarea>
-    <button class="lead-btn" onclick="submitLead()">Send Inquiry</button>
+   
+<div id="chat-display" style="height: 300px; overflow-y: auto;"></div>
+
+<div id="lead-form-container" style="display: none; background: #1e293b; padding: 15px; border-radius: 8px; margin: 10px; border: 1px solid #3b82f6;">
+    <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 10px;">Apni details bharein:</p>
+    <input type="text" id="lead-name" placeholder="Aapka Naam" style="width: 100%; margin-bottom: 8px; padding: 5px; border-radius: 4px; border: none;">
+    <input type="email" id="lead-email" placeholder="Aapki Email" style="width: 100%; margin-bottom: 8px; padding: 5px; border-radius: 4px; border: none;">
+    <textarea id="lead-msg" placeholder="Aapka Project/Idea" style="width: 100%; margin-bottom: 8px; padding: 5px; border-radius: 4px; border: none; height: 50px;"></textarea>
+    <button onclick="submitLead()" style="width: 100%; background: #3b82f6; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; font-weight: bold;">Send to Akshita 🚀</button>
 </div>
+
+<input type="text" id="user-input" placeholder="Type a command..."> 
 
     <script>
        const myProjects = [
@@ -120,10 +125,19 @@ function askAI() {
         if(val.includes("project") || val.includes("work")) {
             response = "Main Akshita ke banaye projects dikha sakta hoon: <br>" + 
                        myProjects.map(p => `- <b>${p.name}</b> (${p.tech}): ${p.desc}`).join("<br>");
-        } 
-        else if(val.includes("contact") || val.includes("hire")) {
-            response = "Zaroor! Aap apna Email ya Idea likh dein, Akshita aapse jald connect karengi.";
-        }
+        } // Purani line: response = "Wait for contact..."
+// Nayi line (Smart response):
+else if (val.includes("contact") || val.includes("hire")) {
+    response = "Zaroor! Niche apna message likh dein, main (Akshita) aapase jald connect karungi. ✨";
+    
+    // Ye line aapke form ko dikhayegi (Make sure aapka form section id='contact-form' ho)
+    document.getElementById('contact-form').style.visibility = 'visible'; 
+}
+    
+    
+    // Ye line aapke HTML wale hidden contact form ko screen par dikha degi
+    document.getElementById('lead-form-container').style.display = 'block'; 
+}
         else if(val.includes("rejection")) {
             response = "Rejections are just data points. Hum ab 'Future AI' build kar rahe hain.";
         }
@@ -135,10 +149,38 @@ function askAI() {
             display.innerHTML += `<p style="color: #cbd5e1;"><b>AI:</b> ${response}</p>`;
             display.scrollTop = display.scrollHeight;
         }, 600);
+        function submitLead() {
+    let name = document.getElementById('lead-name').value;
+// Jab user contact/hire bolega, toh ye line form ko dikhayegi
+setTimeout(() => { form.style.display = "block"; }, 1000);    let message = document.getElementById('lead-msg').value;
+
+    if (name && email) {
+        const formData = {
+            access_key: "88df9cc9-a29a-4ad9-95d6-a9f4eef4869d", // Aapki wahi Key
+            name: name,
+            email: email,
+            message: message
+        };
+
+        fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify(formData),
+        })
+        .then(res => {
+            if (res.status == 200) {
+                alert("Message mil gaya! Akshita aapko jald mail karengi. ✨");
+                document.getElementById('lead-form-container').style.display = 'none'; // Form gayab ho jayega
+            }
+        });
+    } else {
+        alert("Please fill name and email.");
+    }
+}
         
         input.value = "";
     }
-}
+
 function askAI() {
     let input = document.getElementById('user-input');
     let display = document.getElementById('chat-display');
@@ -177,6 +219,37 @@ function submitLead() {
     } else {
         alert("Please fill name and email.");
     }
+}
+function submitLead() {
+    let name = document.getElementById('lead-name').value;
+    let email = document.getElementById('lead-email').value;
+    let message = document.getElementById('lead-msg').value;
+
+    if (!name || !email) {
+        alert("Naam aur Email bharna zaroori hai!");
+        return;
+    }
+
+    const formData = {
+        access_key: "88df9cc9-a29a-4ad9-95d6-a9f4eef4869d", // Aapki key
+        name: name,
+        email: email,
+        message: message
+    };
+
+    // User ko loading dikhane ke liye button text change karein
+    event.target.innerText = "Sending...";
+
+    fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    }).then(res => {
+        if(res.status === 200) {
+            alert("Success! Akshita ko aapka message mil gaya hai.");
+            document.getElementById('lead-form-container').style.display = 'none'; // Form band kar dein
+        }
+    }).catch(err => alert("Error! Net check karein."));
 }
     </script>
 
