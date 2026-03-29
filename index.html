@@ -193,10 +193,10 @@ function askAI() {
 
         // Logic to trigger Lead Form
         if(val.includes("hire") || val.includes("business") || val.includes("contact") || val.includes("project")) {
-            response = "Main samajh gaya! Akshita ke saath kaam karne ke liye niche wala form bhar dein.";
+            response = "I'm glad you're interested in collaborating with Akshita! Please provide your details in the form below...";
             setTimeout(() => { form.style.display = "block"; }, 1000);
         } else if(val.includes("work") || val.includes("portfolio")) {
-            response = "Humne Trading Bots aur AI Servers build kiye hain. Kya aap detail dekhna chahte hain?";
+            response = "I have successfully developed automated trading bots and configured high-performance AI servers to handle real-time data processing.";
         }
 
         setTimeout(() => {
@@ -213,7 +213,7 @@ function submitLead() {
     let email = document.getElementById('lead-email').value;
     
     if(name && email) {
-        alert(`Shukriya ${name}! Aapki inquiry register ho gayi hai. Future AI Solutions aapse jald contact karega.`);
+        alert(`Shukriya ${name}! Thank you! Your inquiry has been successfully registered. Akshita will review your message and get back to you shortly..`);
         document.getElementById('lead-form-container').style.display = "none";
         console.log("New Lead:", {name, email, message: document.getElementById('lead-msg').value});
     } else {
@@ -226,7 +226,7 @@ function submitLead() {
     let message = document.getElementById('lead-msg').value;
 
     if (!name || !email) {
-        alert("Naam aur Email bharna zaroori hai!");
+        alert("Please ensure both Name and Email fields are filled out correctly so Akshita can reach back to you");
         return;
     }
 
@@ -246,10 +246,10 @@ function submitLead() {
         body: JSON.stringify(formData)
     }).then(res => {
         if(res.status === 200) {
-            alert("Success! Akshita ko aapka message mil gaya hai.");
+            alert("Message Received! Akshita has been notified of your inquiry. You can expect a response soon");
             document.getElementById('lead-form-container').style.display = 'none'; // Form band kar dein
         }
-    }).catch(err => alert("Error! Net check karein."));
+    }).catch(err => alert("Error! please check your Internet Connection."));
 }
     </script>
 
